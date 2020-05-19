@@ -13,7 +13,9 @@ RUN apt update \
     python3-pip \
     make \
     ssh-client \
-    openssh-server
+    openssh-server \
+    sudo \
+    build-essential
 
 RUN pip3 install ansible==${ansible_version}
 
