@@ -3,7 +3,8 @@ FROM ubuntu:18.04
 ENV ansible_version=2.9.6 \
     sops_version=v3.5.0 \
     packer_version=1.5.4 \
-    terraform_version=0.12.24
+    terraform_version=0.12.24 \
+    user=ubuntu
 
 RUN apt update \
     && apt install -yqq \
@@ -36,5 +37,10 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
     && apt-get install google-cloud-sdk -y
 
 RUN rm -rf /var/cache/apt/archives
+
+RUN useradd -ms /bin/bash $user
+
+USER $user
+WORKDIR /home/$user
 
 
